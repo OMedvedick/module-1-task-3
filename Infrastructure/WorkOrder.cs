@@ -33,7 +33,7 @@ namespace module_1_task_3.Infrastructure
         {
             if (string.IsNullOrWhiteSpace(newStatus))
             {
-                return Result.Fail("Новый статус не может быть пустым.");
+                return Result.Fail("New status cannot be empty.");
             } 
 
             var result = StatusValidator.Validate(CurrentStatus,newStatus);

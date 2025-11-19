@@ -24,15 +24,15 @@ namespace module_1_task_3.Infrastructure
                     return Result.Ok();
                 }
         
-                return Result.Fail($"Недопустимый переход: Статус \"{currentStatus}\" должен перейти в \"{requiredNextStatus}\" (а не в \"{newStatus}\")");
+                return Result.Fail($"Invalid transition: Status \"{currentStatus}\" must transition to \"{requiredNextStatus}\" (not to \"{newStatus}\")");
             }
 
-            if (currentStatus == "Завершен")
+            if (currentStatus == _allowedTransitions.Values.Last())
             {
-                return Result.Fail($"Недопустимый переход: Статус \"Завершен\" является финальным и не может быть изменен.");
+                return Result.Fail($"Invalid transition: Status {_allowedTransitions.Values.Last()} is final and cannot be changed.");
             }
 
-            return Result.Fail($"Недопустимый переход: Статус \"{currentStatus}\" не найден в правилах.");
+            return Result.Fail($"Invalid transition: Status \"{currentStatus}\" not found in rules.");
         }
     }
 }
